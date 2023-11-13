@@ -5,6 +5,8 @@
         Leaves Status
     </title>
     <link rel="shortcut icon" href="images/favicon.ico">
+    <script src="https://unpkg.com/pdf-lib@1.4.0"></script>
+    <script src="https://unpkg.com/downloadjs@1.4.7"></script>
     <link rel="stylesheet" type="text/css" href="css/mystyle.css">
     <link type="text/css" href="css/reset.css" rel="stylesheet">
     <link type="text/css" href="css/module.css" rel="stylesheet">
@@ -22,10 +24,8 @@
     <link type="text/css" href="Datepicker/datepicker_style.css" rel="stylesheet">
     <script type="text/javascript" src="Datepicker/jquery-1.7.2.min.js"></script>
     <script type="text/javascript" src="Datepicker/jquery-ui.js"></script>
-
-
-
-    <script type="text/javascript">
+    <script type="text/javascript" src="Scripts/loadData.js"></script>
+    <script type="text/javascript" src="Scripts/editScript.js">
         var window_style = "width=900,height=1000,toolbar=0,menubar=0,location=0,status=yes,scrollbars=yes,resizable=yes,left=50,top=50";
         function Popup_window(window_url) {
             window.open(window_url, "", window_style);
@@ -35,36 +35,14 @@
 </head>
 
 <body>
+    <a class="edit-button" href="editpage.html">
+        <!-- You can add an icon or text inside the button -->
+        <span><strong>Edit Details</strong></span>
+    </a>
+
     <div class="note"></div>
     <div id="cboxOverlay" style="display: none;"></div>
     <div id="colorbox" class="" style="padding-bottom: 0px; padding-right: 0px; display: none;">
-        <div id="cboxWrapper" style="">
-            <div style="">
-                <div id="cboxTopLeft" style="float: left;"></div>
-                <div id="cboxTopCenter" style="float: left;"></div>
-                <div id="cboxTopRight" style="float: left;"></div>
-            </div>
-            <div style="clear: left;">
-                <div id="cboxMiddleLeft" style="float: left;"></div>
-                <div id="cboxContent" style="float: left;">
-                    <div id="cboxLoadedContent" class=" " style="width: 0px; height: 0px; overflow: hidden;"></div>
-                    <div id="cboxLoadingOverlay" class=" " style=""></div>
-                    <div id="cboxLoadingGraphic" class=" " style=""></div>
-                    <div id="cboxTitle" class=" " style=""></div>
-                    <div id="cboxCurrent" class=" " style=""></div>
-                    <div id="cboxNext" class=" " style=""></div>
-                    <div id="cboxPrevious" class=" " style=""></div>
-                    <div id="cboxSlideshow" class=" " style=""></div>
-                    <div id="cboxClose" class=" " style=""></div>
-                </div>
-                <div id="cboxMiddleRight" style="float: left;"></div>
-            </div>
-            <div style="clear: left;">
-                <div id="cboxBottomLeft" style="float: left;"></div>
-                <div id="cboxBottomCenter" style="float: left;"></div>
-                <div id="cboxBottomRight" style="float: left;"></div>
-            </div>
-        </div>
         <div style="position: absolute; width: 9999px; visibility: hidden; display: none;"></div>
     </div>
     <form name="aspnetForm" method="post" action="./View_Application_Status_Step1.aspx" id="aspnetForm"
@@ -255,22 +233,22 @@
                                                                                             style="border-color:Black;">
                                                                                             1
                                                                                         </td>
-                                                                                        <td id="IDNO"
+                                                                                        <td id="ID"
                                                                                             style="border-color:Black;">
                                                                                         </td>
-                                                                                        <td id="NAME"
+                                                                                        <td id="name"
                                                                                             style="border-color:Black;">
                                                                                         </td>
-                                                                                        <td id="HOSTEL"
+                                                                                        <td id="hostel"
                                                                                             style="border-color:Black;">
                                                                                         </td>
-                                                                                        <td id="ROOMNO"
+                                                                                        <td id="room"
                                                                                             style="border-color:Black;">
                                                                                         </td>
-                                                                                        <td id="DEPARTUREDATE"
+                                                                                        <td id="DEPARTURE"
                                                                                             style="border-color:Black;">
                                                                                         </td>
-                                                                                        <td id="RETURNDATE"
+                                                                                        <td id="RETURN"
                                                                                             style="border-color:Black;">
                                                                                         </td>
                                                                                         <td id="LEAVEREASON"
@@ -279,7 +257,9 @@
                                                                                         <td
                                                                                             style="color:DarkGreen;border-color:Black;font-weight:bold;">
                                                                                             Approved</td>
-                                                                                        <td style="border-color:Black;">
+                                                                                        <td id="APPLIEDON"
+                                                                                            style="border-color:Black;">
+
                                                                                         </td>
                                                                                         <td style="border-color:Black;">
                                                                                             <a
@@ -288,7 +268,8 @@
                                                                                         </td>
                                                                                         <td style="border-color:Black;">
                                                                                             <div id="LEAVEPDFLINK">
-                                                                                                <a href=""
+                                                                                                <a href="#"
+                                                                                                    onclick="modifyPdf(); return false;"
                                                                                                     target="_blank"><b>Download
                                                                                                         Leave
                                                                                                         Approval</b></a>

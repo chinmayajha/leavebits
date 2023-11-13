@@ -1,4 +1,39 @@
-body {}
+body {
+	margin: 0;
+	/* Remove default body margin */
+}
+
+.edit-button {
+	width: 120px;
+	/* Adjust the width as needed */
+	height: 40px;
+	/* Adjust the height as needed */
+	background-color: #3498db;
+	/* Choose your desired background color */
+	color: #fff;
+	/* Text color */
+	border: none;
+	/* Remove border */
+	border-radius: 5px;
+	/* Optional: Add border radius for rounded corners */
+	position: fixed;
+	bottom: 10px;
+	left: 10px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	cursor: pointer;
+	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+	/* Optional: Add a subtle box shadow */
+	text-decoration: none;
+	/* Remove default underline for links */
+	font-size: medium;
+}
+
+.edit-button:hover {
+	background-color: #2980b9;
+	/* Change color on hover */
+}
 
 .datepicker {
 	background: #fff url("../images/datepicker-icon.png") no-repeat scroll 97% center;
